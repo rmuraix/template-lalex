@@ -11,7 +11,8 @@
   "author": "Ryota Murai",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "textlint \"**/*.{md,tex}\" --fix"
+    "lint": "textlint \"**/*.{md,tex}\"",
+    "lint:fix": "textlint --fix \"**/*.{md,tex}\""
   },
   "dependencies": {
     "textlint": "^15.5.0",
