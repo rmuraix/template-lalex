@@ -1,0 +1,24 @@
+{
+  "name": "latex",
+  "image": "ghcr.io/rmuraix/latex:latest",
+  "remoteUser": "ubuntu",
+  "features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installZsh": false,
+			"installOhMyZsh": false,
+			"installOhMyZshConfig": false,
+			"upgradePackages": false,
+			"username": "ubuntu",
+			"userUid": "automatic",
+			"userGid": "automatic"
+		}
+	},
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "James-Yu.latex-workshop",
+        "3w36zj6.textlint"
+      ]
+    }
+  }
+}
