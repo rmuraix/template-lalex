@@ -21,27 +21,37 @@ src/
 
 ## Build
 
-### Basic Build
+ビルドは `src` ディレクトリ内で行います。まず `src` に移動してください。
 
 ```bash
 cd src
+```
+
+ビルド例:
+
+- 空のテンプレートをビルド
+
+```bash
 latexmk main.tex
 ```
 
-### Build Sample
+- サンプル付きテンプレートをビルド
 
 ```bash
-cd src
 latexmk main_sample.tex
 ```
 
-### Clean Build
+クリーン（中間ファイルの削除）:
 
 ```bash
-cd src
-latexmk -C main_sample.tex && latexmk main_sample.tex
+latexmk -C
 ```
 
+クリーン後に再ビルドする例:
+
+```bash
+latexmk -C && latexmk main_sample.tex
+```
 ## Contributing
 
 Your contribution is always welcome. Please read [Contributing Guide](https://github.com/rmuraix/.github/blob/main/.github/CONTRIBUTING.md).
