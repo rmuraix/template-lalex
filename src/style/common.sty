@@ -1,0 +1,25 @@
+% Common style settings for template-lalex
+% Include commonly used packages, font settings, and bibliography setup.
+
+% Page layout and graphics
+\usepackage[top=25mm,bottom=25mm,left=25mm,right=25mm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{luatexja-fontspec}
+
+% Bibliography (BibLaTeX)
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\addbibresource{references/refs.bib}
+
+% Font settings for Japanese (adjust as needed)
+\setmainjfont{IPAexMincho}
+\setsansjfont{IPAexGothic}
+
+% Caption names
+\captionsetup{labelsep=space, font=small}
+\captionsetup[figure]{name=図}
+\captionsetup[table]{name=表}

@@ -1,27 +1,7 @@
 \documentclass[a4paper,10pt,twocolumn]{ltjsarticle}
 
-% ============================================
-% パッケージ
-% ============================================
-\usepackage[top=25mm,bottom=25mm,left=25mm,right=25mm]{geometry}
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{booktabs}
-\usepackage{caption}
-\usepackage{hyperref}
-\usepackage{luatexja-fontspec}
-
-% 参考文献（BibLaTeX）
-\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
-\addbibresource{references/refs.bib}
-
-% ============================================
-% フォント設定
-% ============================================
-% 日本語フォント（必要に応じて変更）
-\setmainjfont{IPAexMincho}
-\setsansjfont{IPAexGothic}
+% 共通スタイルを読み込みます（パッケージ、フォント、bib設定など）
+\input{style/common.sty}
 
 % ============================================
 % セクションスタイル（番号付き形式）
@@ -41,7 +21,7 @@
 \newcommand{\ksectionnn}[1]{\section*{#1}}
 
 % ============================================
-% 図表キャプション設定
+% 図表キャプション設定（日本語による形式）
 % ============================================
 \captionsetup{labelsep=space, font=small}
 \captionsetup[figure]{name=図}
@@ -84,7 +64,7 @@
 \ksection{はじめに}
 \label{sec:introduction}
 
-余白は上下左右とも25mmとする\cite{sample2024}。○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○\cite{conference2023}○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○\cite{textbook2022}
+余白は上下左右とも25mmとする\cite{sample2024}。○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○
 
 \ksection{実験方法}
 \label{sec:method}
