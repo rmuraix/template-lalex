@@ -1,25 +1,146 @@
-% Common style settings for template-lalex
-% Include commonly used packages, font settings, and bibliography setup.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{master_abstract}[2025/12/19 Master abstract style]
 
-% Page layout and graphics
-\usepackage[top=25mm,bottom=25mm,left=25mm,right=25mm]{geometry}
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{booktabs}
-\usepackage{caption}
-\usepackage{hyperref}
-\usepackage{luatexja-fontspec}
+% =========================================================
+% Packages (keep minimal & ordered)
+% =========================================================
+\RequirePackage{luatexja}
+\RequirePackage{luatexja-fontspec}
+\RequirePackage{geometry}
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{graphicx}
+\RequirePackage{booktabs}
+\RequirePackage[compatibility=false]{caption}
+\RequirePackage[hidelinks]{hyperref}
 
-% Bibliography (BibLaTeX)
-\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
-\addbibresource{references/refs.bib}
+% =========================================================
+% Fonts (LuaLaTeX)
+% =========================================================
+\setmainjfont[
+  BoldFont = HaranoAjiMincho-Bold
+]{HaranoAjiMincho}
+\setsansjfont{HaranoAjiGothic}
 
-% Font settings for Japanese (adjust as needed)
-\setmainjfont{IPAexMincho}
-\setsansjfont{IPAexGothic}
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
 
-% Caption names
-\captionsetup{labelsep=space, font=small}
-\captionsetup[figure]{name=図}
-\captionsetup[table]{name=表}
+% =========================================================
+% Page/Layout
+% =========================================================
+\pagestyle{empty}
+
+\geometry{
+  a4paper,
+  top=20mm,
+  bottom=20mm,
+  left=18mm,
+  right=18mm
+}
+
+\setlength{\parindent}{\zw}
+\setlength{\parskip}{0pt}
+\setlength{\columnsep}{8mm}
+
+% =========================================================
+% Section numbering & headings (same size as body)
+% =========================================================
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+
+\makeatletter
+\renewcommand{\section}{%
+  \@startsection{section}{1}{0pt}%
+    {0.8\baselineskip}{0.4\baselineskip}{\normalsize\bfseries}%
+}
+\renewcommand{\subsection}{%
+  \@startsection{subsection}{2}{0pt}%
+    {0.6\baselineskip}{0.3\baselineskip}{\normalsize\bfseries}%
+}
+\renewcommand{\subsubsection}{%
+  \@startsection{subsubsection}{3}{0pt}%
+    {0.4\baselineskip}{0.2\baselineskip}{\normalsize\bfseries}%
+}
+\makeatother
+
+% =========================================================
+% Title metadata (avoid @-macros for robustness)
+% =========================================================
+\newcommand{\maStudentID}{}
+\newcommand{\maMajorField}{}
+\newcommand{\maAuthorName}{}
+\newcommand{\maAdvisorTitle}{}
+\newcommand{\maAdvisorName}{}
+
+\newcommand{\studentid}[1]{\renewcommand{\maStudentID}{#1}}
+\newcommand{\majorfield}[1]{\renewcommand{\maMajorField}{#1}}
+\newcommand{\authorname}[1]{\renewcommand{\maAuthorName}{#1}}
+\newcommand{\advisor}[2]{%
+  \renewcommand{\maAdvisorTitle}{#1}%
+  \renewcommand{\maAdvisorName}{#2}%
+}
+
+% =========================================================
+% Title printing (two-column, full-width title block)
+% =========================================================
+\makeatletter
+\renewcommand{\maketitle}{%
+  \twocolumn[{%
+    \thispagestyle{empty}%
+    \begin{center}
+      {\large\bfseries \@title\par}%
+    \end{center}%
+    \vspace{0.6\baselineskip}%
+    \begin{flushright}
+      学籍番号\ \maStudentID \par
+      \maMajorField 専攻\ \maAuthorName \par
+      指導教員\ \maAdvisorTitle\ \maAdvisorName \par
+    \end{flushright}%
+    \vspace{0.8\baselineskip}%
+  }]%
+}
+\makeatother
+
+% =========================================================
+% Captions
+% =========================================================
+\captionsetup{font=small, labelfont=bf}
+
+% =========================================================
+% Bibliography (biblatex IEEE)
+% =========================================================
+\RequirePackage[
+  backend=biber,
+  style=ieee,
+  sorting=none,
+  sortcites=true
+]{biblatex}
+
+% (1) Make \cite{a,b} appear as a single bracketed list: [1,2]
+%     Keep separator explicitly comma with no extra space.
+\DeclareDelimFormat{multicitedelim}{\addcomma}
+
+\makeatletter
+\DeclareCiteCommand{\cite}[\mkbibbrackets]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}\usebibmacro{cite}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+\makeatother
+
+% (2) Japanese entries only: suppress "and" by changing name delimiters
+%     Tag Japanese items in .bib with: keywords = {ja}
+\AtEveryBibitem{%
+  \ifkeyword{ja}{%
+    \DeclareDelimFormat{multinamedelim}{，}%
+    \DeclareDelimFormat{finalnamedelim}{，}%
+  }{}%
+}
+
+% (3) Remove quotes around article/proc/incollection titles
+\DeclareFieldFormat[article,inproceedings,incollection]{title}{#1\isdot}
+
+% (4) Print bibliography (title in Japanese)
+\newcommand{\printreferences}{%
+  \printbibliography[title={参考文献}]%
+}
