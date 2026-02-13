@@ -1,67 +1,13 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{absstyle}[2025/12/19 Master abstract style]
+\ProvidesPackage{absstyle}[2026/02/13 Master abstract style]
+
+% load common Japanese paper settings
+\RequirePackage{jp-common}
 
 % =========================================================
-% Packages (keep minimal & ordered)
-% =========================================================
-\RequirePackage{luatexja}
-\RequirePackage{luatexja-fontspec}
-\RequirePackage{geometry}
-\RequirePackage{amsmath,amssymb}
-\RequirePackage{graphicx}
-\RequirePackage{booktabs}
-\RequirePackage[compatibility=false]{caption}
-\RequirePackage[hidelinks]{hyperref}
-
-% =========================================================
-% Fonts (LuaLaTeX)
-% =========================================================
-\setmainjfont[
-  BoldFont = HaranoAjiMincho-Bold
-]{HaranoAjiMincho}
-\setsansjfont{HaranoAjiGothic}
-
-\setmainfont{Latin Modern Roman}
-\setsansfont{Latin Modern Sans}
-
-% =========================================================
-% Page/Layout
+% Page/Layout (abstract specific)
 % =========================================================
 \pagestyle{empty}
-
-\geometry{
-  a4paper,
-  top=20mm,
-  bottom=20mm,
-  left=18mm,
-  right=18mm
-}
-
-\setlength{\parindent}{\zw}
-\setlength{\parskip}{0pt}
-\setlength{\columnsep}{8mm}
-
-% =========================================================
-% Section numbering & headings (same size as body)
-% =========================================================
-\renewcommand{\thesection}{\arabic{section}.}
-\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
-\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
-
-\makeatletter
-\renewcommand{\section}{%
-  \@startsection{section}{1}{0pt}%
-    {0.8\baselineskip}{0.4\baselineskip}{\normalsize\bfseries}%
-}
-\renewcommand{\subsection}{%
-  \@startsection{subsection}{2}{0pt}%
-    {0.6\baselineskip}{0.3\baselineskip}{\normalsize\bfseries}%
-}
-\renewcommand{\subsubsection}{%
-  \@startsection{subsubsection}{3}{0pt}%
-    {0.4\baselineskip}{0.2\baselineskip}{\normalsize\bfseries}%
-}
-\makeatother
 
 % =========================================================
 % Title metadata (avoid @-macros for robustness)
@@ -102,12 +48,7 @@
 \makeatother
 
 % =========================================================
-% Captions
-% =========================================================
-\captionsetup{font=small, labelfont=bf}
-
-% =========================================================
-% Bibliography (biblatex IEEE)
+% Bibliography (biblatex IEEE) settings
 % =========================================================
 \RequirePackage[
   backend=biber,
@@ -117,7 +58,6 @@
 ]{biblatex}
 
 % (1) Make \cite{a,b} appear as a single bracketed list: [1,2]
-%     Keep separator explicitly comma with no extra space.
 \DeclareDelimFormat{multicitedelim}{\addcomma}
 
 \makeatletter
