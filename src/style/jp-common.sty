@@ -1,0 +1,71 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{jp-common}[2026/02/13 Common Japanese paper settings]
+
+% =========================================================
+% Engine / Japanese typesetting (LuaLaTeX)
+% =========================================================
+\RequirePackage{luatexja}
+\RequirePackage{luatexja-fontspec}
+
+% =========================================================
+% Basic packages (common)
+% =========================================================
+\RequirePackage{geometry}
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{graphicx}
+\RequirePackage{booktabs}
+\RequirePackage[compatibility=false]{caption}
+\RequirePackage[hidelinks]{hyperref}
+
+% =========================================================
+% Fonts (LuaLaTeX)
+% =========================================================
+\setmainjfont[
+  BoldFont = HaranoAjiMincho-Bold
+]{HaranoAjiMincho}
+\setsansjfont{HaranoAjiGothic}
+
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+
+% =========================================================
+% Page/Layout (common)
+% =========================================================
+\geometry{
+  a4paper,
+  top=20mm,
+  bottom=20mm,
+  left=18mm,
+  right=18mm
+}
+
+\setlength{\parindent}{\zw}
+\setlength{\parskip}{0pt}
+\setlength{\columnsep}{8mm}
+
+% =========================================================
+% Section numbering & headings (common)
+% =========================================================
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+
+\makeatletter
+\renewcommand{\section}{%
+  \@startsection{section}{1}{0pt}%
+    {0.8\baselineskip}{0.4\baselineskip}{\normalsize\bfseries}%
+}
+\renewcommand{\subsection}{%
+  \@startsection{subsection}{2}{0pt}%
+    {0.6\baselineskip}{0.3\baselineskip}{\normalsize\bfseries}%
+}
+\renewcommand{\subsubsection}{%
+  \@startsection{subsubsection}{3}{0pt}%
+    {0.4\baselineskip}{0.2\baselineskip}{\normalsize\bfseries}%
+}
+\makeatother
+
+% =========================================================
+% Captions (common)
+% =========================================================
+\captionsetup{font=small, labelfont=bf}

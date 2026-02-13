@@ -1,0 +1,86 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{absstyle}[2026/02/13 Master abstract style]
+
+% load common Japanese paper settings
+\RequirePackage{jp-common}
+
+% =========================================================
+% Page/Layout (abstract specific)
+% =========================================================
+\pagestyle{empty}
+
+% =========================================================
+% Title metadata (avoid @-macros for robustness)
+% =========================================================
+\newcommand{\maStudentID}{}
+\newcommand{\maMajorField}{}
+\newcommand{\maAuthorName}{}
+\newcommand{\maAdvisorTitle}{}
+\newcommand{\maAdvisorName}{}
+
+\newcommand{\studentid}[1]{\renewcommand{\maStudentID}{#1}}
+\newcommand{\majorfield}[1]{\renewcommand{\maMajorField}{#1}}
+\newcommand{\authorname}[1]{\renewcommand{\maAuthorName}{#1}}
+\newcommand{\advisor}[2]{%
+  \renewcommand{\maAdvisorTitle}{#1}%
+  \renewcommand{\maAdvisorName}{#2}%
+}
+
+% =========================================================
+% Title printing (two-column, full-width title block)
+% =========================================================
+\makeatletter
+\renewcommand{\maketitle}{%
+  \twocolumn[{%
+    \thispagestyle{empty}%
+    \begin{center}
+      {\large\bfseries \@title\par}%
+    \end{center}%
+    \vspace{0.6\baselineskip}%
+    \begin{flushright}
+      学籍番号\ \maStudentID \par
+      \maMajorField 専攻\ \maAuthorName \par
+      指導教員\ \maAdvisorTitle\ \maAdvisorName \par
+    \end{flushright}%
+    \vspace{0.8\baselineskip}%
+  }]%
+}
+\makeatother
+
+% =========================================================
+% Bibliography (biblatex IEEE) settings
+% =========================================================
+\RequirePackage[
+  backend=biber,
+  style=ieee,
+  sorting=none,
+  sortcites=true
+]{biblatex}
+
+% (1) Make \cite{a,b} appear as a single bracketed list: [1,2]
+\DeclareDelimFormat{multicitedelim}{\addcomma}
+
+\makeatletter
+\DeclareCiteCommand{\cite}[\mkbibbrackets]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}\usebibmacro{cite}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+\makeatother
+
+% (2) Japanese entries only: suppress "and" by changing name delimiters
+%     Tag Japanese items in .bib with: keywords = {ja}
+\AtEveryBibitem{%
+  \ifkeyword{ja}{%
+    \DeclareDelimFormat{multinamedelim}{，}%
+    \DeclareDelimFormat{finalnamedelim}{，}%
+  }{}%
+}
+
+% (3) Remove quotes around article/proc/incollection titles
+\DeclareFieldFormat[article,inproceedings,incollection]{title}{#1\isdot}
+
+% (4) Print bibliography (title in Japanese)
+\newcommand{\printreferences}{%
+  \printbibliography[title={参考文献}]%
+}
