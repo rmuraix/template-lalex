@@ -10,8 +10,11 @@
     "preset-ja-technical-writing": {
       "ja-no-mixed-period": {
         "periodMark": "．",
-        "allowPeriodMarks": [":"]
-      }
+        "allowPeriodMarks": [
+          ":"
+        ]
+      },
+      "@textlint-ja/preset-ai-writing": true
     }
   }
 }
