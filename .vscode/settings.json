@@ -16,6 +16,10 @@
     "editor.unicodeHighlight.invisibleCharacters": true,
     "editor.stickyScroll.enabled": true,
   },
+  "editor.unicodeHighlight.allowedCharacters": {
+    "．": true,
+    "，": true
+  },
   "latex-workshop.latex.outDir": "%DIR%/out",
   "latex-workshop.latex.tools": [
     {
