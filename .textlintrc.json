@@ -9,9 +9,12 @@
   "rules": {
     "preset-ja-technical-writing": {
       "ja-no-mixed-period": {
-        "periodMark": ".",
-        "allowPeriodMarks": [":"]
-      }
+        "periodMark": "．",
+        "allowPeriodMarks": [
+          ":"
+        ]
+      },
+      "@textlint-ja/preset-ai-writing": true
     }
   }
 }
