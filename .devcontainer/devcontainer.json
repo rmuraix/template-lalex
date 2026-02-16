@@ -2,6 +2,7 @@
   "name": "latex",
   "image": "ghcr.io/rmuraix/latex:latest",
   "remoteUser": "ubuntu",
+  "postStartCommand": "npm ci",
   "features": {
 		"ghcr.io/devcontainers/features/common-utils:2": {
 			"installZsh": false,
