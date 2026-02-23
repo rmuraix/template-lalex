@@ -1,6 +1,6 @@
 # LaTeX Template (template-lalex)
 
-devcontainerを使用する日本語の論文・レポート向けLaTeXテンプレート.
+devcontainerを使用する日本語の論文・レポート向けLaTeXテンプレート．
 
 ## Contributing
 
