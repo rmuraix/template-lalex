@@ -22,13 +22,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    container:
-      image: ghcr.io/rmuraix/latex:latest
     steps:
       - uses: actions/checkout@v6
       - name: Build LaTeX document
-        working-directory: src
-        run: latexmk main.tex
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: cd src && latexmk main.tex
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
         with:
