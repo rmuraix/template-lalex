@@ -27,7 +27,7 @@
       "command": "latexmk",
       "args": [
         "-r",
-        "%WORKSPACE_FOLDER%/latexmkrc",
+        "%WORKSPACE_FOLDER%/.latexmkrc",
         "%DOC%"
       ]
     }
