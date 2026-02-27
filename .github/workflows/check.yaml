@@ -7,6 +7,8 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v6
       - name: Setup node
@@ -16,3 +18,18 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run lint
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build LaTeX document
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: cd src && latexmk main.tex
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: document
+          path: src/out/main.pdf

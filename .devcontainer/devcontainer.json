@@ -1,6 +1,8 @@
 {
   "name": "latex",
-  "image": "ghcr.io/rmuraix/latex:latest",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "remoteUser": "ubuntu",
   "postStartCommand": "npm ci",
   "features": {
