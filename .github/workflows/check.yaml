@@ -29,7 +29,7 @@ jobs:
         with:
           runCmd: cd src && latexmk main.tex
       - name: Upload PDF artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: document
           path: src/out/main.pdf
